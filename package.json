@@ -1,0 +1,16 @@
+{
+    "name": "@arted/animate",
+    "version": "0.0.1",
+    "description": "A simple utils to create javascript animation!",
+    "main": "./animate.js",
+    "scripts": {
+        "drap": "drap lib build",
+        "build": "yarn drap && cd build && yarn publish --access public"
+    },
+    "repository": "git@github.com:edonet/animate.git",
+    "author": "edoner <edonet@163.com>",
+    "license": "MIT",
+    "dependencies": {
+        "@arted/utils": "^0.0.106"
+    }
+}
