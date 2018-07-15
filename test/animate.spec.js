@@ -12,7 +12,10 @@
  * 加载模块
  *****************************************
  */
+import delay from '@arted/utils/delay';
 import animate from '../lib/animate';
+import throttle from '../lib/throttle';
+import { rAF } from '../lib/utils';
 
 
 /**
@@ -21,6 +24,8 @@ import animate from '../lib/animate';
  *****************************************
  */
 describe('测试【animate】', () => {
+
+    /* 执行动画 */
     test('执行动画', () => {
         let cb = jest.fn(() => false),
             lastTime = 0;
@@ -73,5 +78,25 @@ describe('测试【animate】', () => {
             // 完成测试
             resolve();
         }, 500));
+    });
+
+    /* 函数节流 */
+    test('函数节流', async () => {
+        let cb = jest.fn(),
+            throttled = throttle(cb),
+            len = 10;
+
+        // 循环执行
+        while(len --) {
+            await delay(throttled(len), 5);
+        }
+
+        // 等待下一帧结束
+        await new Promise(resolve => rAF(resolve));
+
+        // 校验结果
+        expect(cb).toHaveBeenLastCalledWith(0);
+        expect(cb.mock.calls.length).toBeGreaterThan(0);
+        expect(cb.mock.calls.length).toBeLessThan(9);
     });
 });

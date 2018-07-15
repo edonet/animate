@@ -1,8 +1,8 @@
 {
     "name": "@arted/animate",
-    "version": "0.0.1",
+    "version": "0.0.101",
     "description": "A simple utils to create javascript animation!",
-    "main": "./animate.js",
+    "main": "./index.js",
     "scripts": {
         "drap": "drap lib build",
         "build": "yarn drap && cd build && yarn publish --access public"
@@ -11,6 +11,6 @@
     "author": "edoner <edonet@163.com>",
     "license": "MIT",
     "dependencies": {
-        "@arted/utils": "^0.0.106"
+        "@arted/utils": "^0.0.111"
     }
 }
