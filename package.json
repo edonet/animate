@@ -1,11 +1,11 @@
 {
     "name": "@arted/animate",
-    "version": "0.0.101",
+    "version": "0.0.102",
     "description": "A simple utils to create javascript animation!",
     "main": "./index.js",
     "scripts": {
-        "drap": "drap lib build",
-        "build": "yarn drap && cd build && yarn publish"
+        "build": "drap lib build",
+        "release": "yarn build && cd build && yarn publish"
     },
     "repository": "git@github.com:edonet/animate.git",
     "author": "edoner <edonet@163.com>",
