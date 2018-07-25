@@ -67,6 +67,11 @@ describe('测试【animate】', () => {
             expect(event.value).toBeLessThanOrEqual(event.progress);
         });
 
+        // 自定义缓存动画
+        animate(300, x => 2 * x, event => {
+            expect(event.value).toBe(event.progress * 2);
+        });
+
         // 等待执行结束
         return new Promise(resolve => setTimeout(() => {
 

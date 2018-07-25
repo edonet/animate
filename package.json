@@ -1,6 +1,6 @@
 {
     "name": "@arted/animate",
-    "version": "0.0.102",
+    "version": "0.0.103",
     "description": "A simple utils to create javascript animation!",
     "main": "./index.js",
     "scripts": {
