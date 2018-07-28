@@ -85,6 +85,50 @@ describe('测试【animate】', () => {
         }, 500));
     });
 
+    /* 连续动画 */
+    test('连续动画', async () => {
+        let cb = jest.fn(),
+            anim;
+
+        // 执行动画
+        await animate(100, cb);
+
+        // 校验结果
+        expect(cb).toBeCalled();
+        expect(cb.mock.calls[0][0].value).toBeGreaterThan(0);
+        expect(cb).toHaveBeenLastCalledWith(expect.objectContaining({ value: 1, progress: 1 }));
+
+        // 执行动画
+        cb = jest.fn();
+        await animate(100, x => 2 * x, cb);
+
+        // 校验结果
+        expect(cb).toBeCalled();
+        expect(cb.mock.calls[0][0].value).toBeGreaterThan(0);
+        expect(cb).toHaveBeenLastCalledWith(expect.objectContaining({ value: 2, progress: 1 }));
+
+        // 内部阻止
+        cb = jest.fn(e => e.value < 1.5 || e.stop(1.5));
+        anim = animate(100, x => 2 * x, cb);
+
+        // 校验结果
+        expect(await anim).toBe(1.5);
+        expect(cb).toBeCalled();
+        expect(cb.mock.calls[0][0].value).toBeGreaterThan(0);
+        expect(cb.mock.calls[cb.mock.calls.length - 1][0].value).toBeGreaterThan(1.5);
+
+        // 外部阻止
+        cb = jest.fn();
+        anim = animate(100, x => 2 * x, cb);
+        setTimeout(() => anim.stop(50), 50);
+
+        // 校验结果
+        expect(await anim).toBe(50);
+        expect(cb).toBeCalled();
+        expect(cb.mock.calls[0][0].value).toBeGreaterThan(0);
+        expect(cb.mock.calls[cb.mock.calls.length - 1][0].value).toBeLessThan(2);
+    });
+
     /* 函数节流 */
     test('函数节流', async () => {
         let cb = jest.fn(),

@@ -1,6 +1,6 @@
 {
     "name": "@arted/animate",
-    "version": "0.0.103",
+    "version": "0.0.104",
     "description": "A simple utils to create javascript animation!",
     "main": "./index.js",
     "scripts": {
@@ -11,6 +11,6 @@
     "author": "edoner <edonet@163.com>",
     "license": "MIT",
     "dependencies": {
-        "@arted/utils": "^0.0.111"
+        "@arted/utils": "^0.0.114"
     }
 }
